@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529111814) do
+ActiveRecord::Schema.define(:version => 20130529124051) do
+
+  create_table "addresses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "postcode"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "addresses", ["user_id"], :name => "index_addresses_on_user_id"
+
+  create_table "phones", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "number"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "phones", ["user_id"], :name => "index_phones_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -47,5 +71,15 @@ ActiveRecord::Schema.define(:version => 20130529111814) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "websites", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "websites", ["user_id"], :name => "index_websites_on_user_id"
 
 end

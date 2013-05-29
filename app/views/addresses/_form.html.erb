@@ -1,0 +1,14 @@
+<%= simple_form_for(@address) do |f| %>
+  <%= f.error_notification %>
+
+
+    <%= f.input :name, :label => 'Address name', :placeholder => 'Work/Home etc', :class => 'span4', :autofocus => true %>
+    <%= f.input :street1, :label => 'Street Line 1', :class => 'span4' %>
+    <%= f.input :street2, :label => 'Street Line 2', :class => 'span4' %>
+    <%= f.input :city, :label => 'Suburb/City', :class => 'span4' %>
+    <%= f.input :postcode, :label => 'Postcode/Zip code', :class => 'span4' %>
+    <%= f.input :country, :priority => [ current_user.find_country_from_location ] %>
+
+    <%= f.button :submit %>
+ 
+<% end %>

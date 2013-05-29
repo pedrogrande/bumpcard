@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
   validates_presence_of :name
+  has_many :phones
+  has_many :addresses
+  has_many :websites
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -19,6 +22,12 @@ class User < ActiveRecord::Base
          user.headline = auth['info']['headline'] || ""
          user.industry = auth['info']['industry'] || ""
       end
+    end
+  end
+
+  def find_country_from_location
+    if self.location
+      location.split(', ')[1]
     end
   end
 

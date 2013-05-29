@@ -1,4 +1,13 @@
 Bumpcard::Application.routes.draw do
+  resources :websites
+
+
+  resources :phones
+
+
+  resources :addresses
+
+
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   match '/auth/:provider/callback' => 'sessions#create'

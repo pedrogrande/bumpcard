@@ -1,9 +1,59 @@
-<h1><%= @user.name %></h1>
-<p><%= image_tag @user.picture_url if @user.picture_url %></p>
+<div class="row">
+	<div class="span6">
 
-<p>Email: <%= @user.email if @user.email %></p>
+		<h1><%= @user.name %></h1>
+		<p><%= image_tag @user.picture_url if @user.picture_url %></p>
 
-<p>Location: <%= @user.location if @user.location %></p>
-<p>Industry: <%= @user.industry if @user.industry %></p>
-<p>Headline: <%= @user.headline if @user.headline %></p>
-<p>URL: <%= @user.public_profile_url if @user.public_profile_url %></p>
+		<p>Email: <%= @user.email if @user.email %></p>
+
+		<p>Location: <%= @user.location if @user.location %></p>
+		<p>Industry: <%= @user.industry if @user.industry %></p>
+		<p>Headline: <%= @user.headline if @user.headline %></p>
+		<p>URL: <%= @user.public_profile_url if @user.public_profile_url %></p>
+	</div>
+
+	<div class="span5">
+		<h2>Addresses</h2>
+		<% if @user.addresses.count > 0 %>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>Street address line 1</th>
+					<th>Street address line 2</th>
+					<th>City</th>
+					<th>Postcode</th>
+					<th>Country</th>
+				</tr>
+				<% @user.addresses.each do |address| %>
+				<tr>
+					<th><%= address.name %></th>
+					<td><%= address.street1 %></td>
+					<td><%= address.street2 %></td>
+					<td><%= address.city %></td>
+					<td><%= address.postcode %></td>
+					<td><%= address.country %></td>
+				</tr>
+				<% end %>
+			</table>
+		<% end %>
+
+		<p><%= link_to "Add an address", new_address_path, :class => "btn btn-success" %></p>
+
+		<hr>
+
+		<h2>Phone numbers</h2>
+		<% if @user.phones.count > 0 %>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>Number</th>
+				</tr>
+				<% @user.phones.each do |phone| %>
+				<tr>
+					<th><%= phone.name %></th>
+					<td><%= phone.number %></td>
+				</tr>
+				<% end %>
+			</table>
+		<% end %>
+		<p><%= link_to "Add a phone number", new_phone_path, :class => "btn btn-success" %></p>

@@ -1,0 +1,10 @@
+<%= simple_form_for(@phone) do |f| %>
+  <%= f.error_notification %>
+
+  
+    <%= f.input :name, :label => "Phone type", :placeholder => 'Work/Mobile etc', :class => 'span4', :autofocus => true %>
+    <%= f.input :number %>
+
+    <%= f.button :submit %>
+  
+<% end %>

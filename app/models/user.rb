@@ -11,8 +11,16 @@ class User < ActiveRecord::Base
       if auth['info']
          user.name = auth['info']['name'] || ""
          user.email = auth['info']['email'] || ""
+         user.first_name = auth['info']['first_name'] || ""
+         user.last_name = auth['info']['last_name'] || ""
+         user.picture_url = auth['info']["image"] || ""
+         user.public_profile_url = auth['info']["urls"].public_profile || ""
+         user.location = auth['info']['location'] || ""
+         user.headline = auth['info']['headline'] || ""
+         user.industry = auth['info']['industry'] || ""
       end
     end
   end
+
 
 end

@@ -41,10 +41,11 @@ class WebsitesController < ApplicationController
   # POST /websites.json
   def create
     @website = Website.new(params[:website])
+    @website.user = current_user
 
     respond_to do |format|
       if @website.save
-        format.html { redirect_to @website, notice: 'Website was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Website was successfully created.' }
         format.json { render json: @website, status: :created, location: @website }
       else
         format.html { render action: "new" }

@@ -1,4 +1,7 @@
 Bumpcard::Application.routes.draw do
+  resources :positions
+
+
   resources :websites
 
 

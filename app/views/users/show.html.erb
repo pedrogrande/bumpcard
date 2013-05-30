@@ -1,59 +1,72 @@
-<div class="row">
-	<div class="span6">
 
-		<h1><%= @user.name %></h1>
-		<p><%= image_tag @user.picture_url if @user.picture_url %></p>
 
-		<p>Email: <%= @user.email if @user.email %></p>
+<h1><%= image_tag @user.picture_url if @user.picture_url %><%= @user.name %></h1>
+<%= @user.headline if @user.headline %>
+<br>
+<%= @user.location if @user.location %>
 
-		<p>Location: <%= @user.location if @user.location %></p>
-		<p>Industry: <%= @user.industry if @user.industry %></p>
-		<p>Headline: <%= @user.headline if @user.headline %></p>
-		<p>URL: <%= @user.public_profile_url if @user.public_profile_url %></p>
-	</div>
+<p>Email: <%= @user.email if @user.email %></p>
 
-	<div class="span5">
-		<h2>Addresses</h2>
-		<% if @user.addresses.count > 0 %>
-			<table class="table">
-				<tr>
-					<th></th>
-					<th>Street address line 1</th>
-					<th>Street address line 2</th>
-					<th>City</th>
-					<th>Postcode</th>
-					<th>Country</th>
-				</tr>
-				<% @user.addresses.each do |address| %>
-				<tr>
-					<th><%= address.name %></th>
-					<td><%= address.street1 %></td>
-					<td><%= address.street2 %></td>
-					<td><%= address.city %></td>
-					<td><%= address.postcode %></td>
-					<td><%= address.country %></td>
-				</tr>
-				<% end %>
-			</table>
+<p>URL: <%= @user.public_profile_url if @user.public_profile_url %></p>
+
+
+<% if @user.addresses.count > 0 %>
+	<h3>Addresses</h3>
+	<table class="table">
+
+		<% @user.addresses.each do |address| %>
+		<tr>
+			<th><%= address.name %></th>
+			<td>
+				<%= address.street1 %><br>
+				<%= address.street2 %><br>
+				<%= address.city %>
+				<%= address.postcode %>
+				<%= address.country %>
+			</td>
+		</tr>
 		<% end %>
+		<tr>
+			<td></td>
+			<td><%= link_to "Add an address", new_address_path, :class => "btn btn-success btn-small" %></td>
+		</tr>
+	</table>
+<% end %>
 
-		<p><%= link_to "Add an address", new_address_path, :class => "btn btn-success" %></p>
+<br>
 
-		<hr>
+<h3>Phone numbers</h3>
+<% if @user.phones.count > 0 %>
+	<table class="table">
 
-		<h2>Phone numbers</h2>
-		<% if @user.phones.count > 0 %>
-			<table class="table">
-				<tr>
-					<th></th>
-					<th>Number</th>
-				</tr>
-				<% @user.phones.each do |phone| %>
-				<tr>
-					<th><%= phone.name %></th>
-					<td><%= phone.number %></td>
-				</tr>
-				<% end %>
-			</table>
+		<% @user.phones.each do |phone| %>
+		<tr>
+			<th><%= phone.name %></th>
+			<td><%= phone.number %></td>
+		</tr>
 		<% end %>
-		<p><%= link_to "Add a phone number", new_phone_path, :class => "btn btn-success" %></p>
+		<tr>
+			<th></th>
+			<th><%= link_to "Add a phone number", new_phone_path, :class => "btn btn-success btn-small" %></th>
+		</tr>
+	</table>
+<% end %>
+<p></p>
+
+<h3>Websites</h3>
+<% if @user.websites.count > 0 %>
+	<table class="table">
+
+		<% @user.websites.each do |website| %>
+		<tr>
+			<th><%= website.name %></th>
+			<td><%= link_to website.url %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th></th>
+			<th><%= link_to "Add a website", new_website_path, :class => "btn btn-success btn-small" %></th>
+		</tr>
+	</table>
+<% end %>
+<p></p>

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery-fileupload
 //= require_tree .
 $(document).ready(function() {
 	$("#full").spectrum({
@@ -37,8 +38,16 @@ $(document).ready(function() {
 	    hide: function () {
 	    
 	    },
-	    change: function() {
-	        
+	    change: function(color) {
+	       var hsv = color.toHsv();
+        var rgb = color.toRgbString();
+        var hex = color.toHexString();
+        //console.log("callback",color.toHslString(), color.toHsl().h, color.toHsl().s, color.toHsl().l)
+        $(".screen").css({
+            'background-color': color.toRgbString()
+        }).toggleClass("dark", hsv.v < .5);
+        $("#switch-current-rgb").text(rgb);
+        $("#switch-current-hex").text(hex);
 	    },
 	    palette: [
 	        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
@@ -67,8 +76,16 @@ $(document).ready(function() {
 	    hide: function () {
 	    
 	    },
-	    change: function() {
-	        
+	    change: function(color) {
+	      var hsv = color.toHsv();
+        var rgb = color.toRgbString();
+        var hex = color.toHexString();
+        //console.log("callback",color.toHslString(), color.toHsl().h, color.toHsl().s, color.toHsl().l)
+        $(".text").css({
+            'color': color.toRgbString()
+        }).toggleClass("dark", hsv.v < .5);
+        $("#switch-current-rgb").text(rgb);
+        $("#switch-current-hex").text(hex);
 	    },
 	    palette: [
 	        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",

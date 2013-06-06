@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530005853) do
+ActiveRecord::Schema.define(:version => 20130602073808) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(:version => 20130530005853) do
   end
 
   add_index "addresses", ["user_id"], :name => "index_addresses_on_user_id"
+
+  create_table "designs", :force => true do |t|
+    t.string   "background_image"
+    t.string   "background_color"
+    t.string   "logo"
+    t.string   "text_color"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "phones", :force => true do |t|
     t.integer  "user_id"

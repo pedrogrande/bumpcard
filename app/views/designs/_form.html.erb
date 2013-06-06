@@ -1,0 +1,10 @@
+<%= simple_form_for @design, :html => { :multipart => true } do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :background_color, :input_html => { :id => "full" } %>
+    <h4>Choose a background image ($2 per month)</h4>
+    <%= f.input :background_image, :label => false, :as => :file, :input_html => { :class => 'btn btn-info'} %>
+    <%= f.input :logo, :as => :file %>
+    <%= f.input :text_color, :input_html => { :id => "full2" } %>
+    
+<% end %>
